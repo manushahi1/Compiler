@@ -1,0 +1,44 @@
+.complete{
+    /* background-color: turquoise; */
+    width: 20vw;
+	height: 40vh;
+	/* background-color: red; */
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+    border-radius: 3%;
+}
+
+
+.headi{
+    align-content: center;
+    padding-left: 15%;
+}
+
+
+.login{
+    /* background-color: turquoise; */
+    width: 20vw;
+	height: 40vh;
+	/* background-color: red; */
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+    border-radius: 3%;
+
+}
+
+
+.but{
+    margin-top: 20px;
+}

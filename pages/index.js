@@ -1,65 +1,87 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+// import styles from '../styles/Home.module.css'
+// import 'materialize-css/dist/css/materialize.css'
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+import styles from "../styles/code.module.css";
+import dynamic from "next/dynamic";
+// import Dropdown from '../Dropdown';
+
+import { useEffect, useState } from "react";
+import jwt from "jsonwebtoken";
+
+const Editor = dynamic(() => import("../Components/Editor/editor"), {
+  ssr: false,
+});
+const Navbar = dynamic(() => import("../Components/Navbar/Navbar"), {
+  ssr: false,
+});
 
 export default function Home() {
+  const [input, setInput] = useState("");
+  const [out, setOut] = useState("");
+  const [lang, setLang] = useState(0);
+  // const [code, setCode] = useState("");
+  const [editorVal, setEditor] = useState("");
+
+  function onChange(e) {
+    setInput(e.target.value);
+    console.log(e.target.value);
+  }
+
+  const editorInput = async (val) => {
+    setEditor(val);
+    console.log(val);
+  };
+
+   function submitForm() {
+     
+
+    setOut(`code :- ${editorVal} input:= ${input}`);
+  }
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="container-fluid">
+      <div className="row">
+        <Navbar />
+      </div>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      <div className="container">
+      <div className="row">
+        <Editor val={editorInput} actualVal={editorVal} />
+      </div>
+      {/* <div className="container-fluid"> */}
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      <button onClick={submitForm}>Run</button>
+      <button>Reset</button>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className={styles.io_container}>
+        <div className={styles.input_container}>
+          input
+          <textarea
+            type="text"
+            name="input"
+            value={input}
+            onChange={onChange}
+            rows="5"
+            cols="70"
+          ></textarea>
         </div>
-      </main>
+        <div className={styles.output_container}>
+          output
+          <textarea
+            type="text"
+            name="input"
+            value={out}
+            rows="5"
+            cols="70"
+          ></textarea>
+        </div>
+      </div>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      </div>
     </div>
-  )
+
+    // </div>
+  );
 }
