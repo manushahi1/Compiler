@@ -4,8 +4,6 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
 import Style from "./editor.module.css";
 import jwt from "jsonwebtoken";
-//import Dropdowns from "./Components/Dropdown";
-// import { Dropdown } from 'semantic-ui-react'
 
 function editor(props) {
   const [v, setv] = useState("");
@@ -25,6 +23,7 @@ function editor(props) {
         headers: {
           "content-type": "application/json",
           "x-rapidapi-key":
+            "e181324023msh6185911ba128cf0p101458jsn29de56a07523",
           "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
         },
         body: {
@@ -46,6 +45,9 @@ function editor(props) {
     }
   }
 
+
+  // ace editor api for writing the code 
+
   return (
     <>
       <AceEditor
@@ -56,19 +58,18 @@ function editor(props) {
         name="UNIQUE_ID_OF_DIV"
         editorProps={{ $blockScrolling: true }}
       />
-     
     </>
   );
 }
 export default editor;
 
-
-
-{/* <div>
+{
+  /* <div>
 <button className={Style.buttonn} onClick={OnClick} >
   Run
 </button>
 <button className={Style.buttonn} > Reset</button>
 </div>
 
-this was added just below the editor in this page  */}
+this was added just below the editor in this page  */
+}
