@@ -23,7 +23,7 @@ function editor(props) {
         headers: {
           "content-type": "application/json",
           "x-rapidapi-key":
-            "e181324023msh6185911ba128cf0p101458jsn29de56a07523",
+            "aaaaaaaaaaa",
           "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
         },
         body: {
