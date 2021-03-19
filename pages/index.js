@@ -71,6 +71,7 @@ export default function Home() {
               type="text"
               name="input"
               value={out}
+              readOnly
               rows="5"
               cols="70"
             ></textarea>
