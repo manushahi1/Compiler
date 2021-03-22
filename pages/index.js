@@ -33,8 +33,43 @@ export default function Home() {
   };
 
   function submitForm() {
+
+    async function run() {
+      const res = await fetch(
+        "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*",
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "x-rapidapi-key":
+              "aaaaaaaaaaa",
+            "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
+          },
+          body: {
+            stdin: "",
+            language_id: "",
+            source_code: "",
+          },
+        }
+      );
+
+  
+      const token = res.token;
+      if (token) {
+        const json = jwt.decode(token);
+        console.log(json);
+        setOut(json.stdout);
+        return json.stdout;
+      } else {
+        setOut("err");
+      }
+    }
     setOut(`code :- ${editorVal} input:= ${input}`);
+    
   }
+
+
+
 
   return (
     <div className="container-fluid">
@@ -51,6 +86,7 @@ export default function Home() {
         <button className={styles.run} onClick={submitForm}>
           Run
         </button>
+        
         <button className={styles.reset}>Reset</button>
 
         <div className={styles.io_container}>

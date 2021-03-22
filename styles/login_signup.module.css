@@ -23,22 +23,45 @@
 
 .login{
     /* background-color: turquoise; */
-    width: 20vw;
-	height: 40vh;
+    /*  */
 	/* background-color: red; */
 	
-	position: absolute;
+	/* position: absolute;
 	top:0;
 	bottom: 0;
 	left: 0;
 	right: 0;
   	
 	margin: auto;
-    border-radius: 3%;
+    border-radius: 3%; */
+	width: 20vw;
+	height: 40vh;
+	
 
 }
 
+.in{
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+  }
+  
+  
+  .but {
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+  }
+  
+  .but:hover {
+	opacity: 0.8;
+  }
 
-.but{
-    margin-top: 20px;
-}
+
