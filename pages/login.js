@@ -10,26 +10,29 @@ function login() {
   return (
     <>
       {/* <Head> */}
-        <Navbar />
+      <Navbar />
       {/* </Head> */}
 
       <div className={styles.login}>
         <form action="POST">
           <label for="username">Username</label>
-          <input className={styles.in}
+          <input
+            className={styles.in}
             type="text"
             placeholder="Enter Username"
             name="uname"
             required
           />
           <label for="password">Password</label>
-          <input 
+          <input
             type="password"
             placeholder="Enter Password"
             name="psw"
             required
           />
-          <button  className={styles.but}type="submit">Login</button>
+          <button className={styles.but} type="submit">
+            Login
+          </button>
           <label>
             <input type="checkbox" checked="checked" name="remember" /> Remember
             me

@@ -18,22 +18,38 @@ const Navbar = dynamic(() => import("../Components/Navbar/Navbar"), {
 export default function Home() {
   const [input, setInput] = useState("");
   const [out, setOut] = useState("");
-  const [lang, setLang] = useState(0);
+  const [lang, setLang] = useState('CPP');
+  
 
   const [editorVal, setEditor] = useState("");
+  
 
   function onChange(e) {
     setInput(e.target.value);
     console.log(e.target.value);
+   
   }
 
   const editorInput = async (val) => {
     setEditor(val);
+    
+    
     console.log(val);
   };
+   const lan=(la)=>{
+     console.log("recived from middle",la)
+     setLang(la)
+
+   }
+   console.log("the language selected forn your coding problem is",lang);
+
+ const resetCode=()=> {
+    setEditor("");
+    setInput("");
+    console.log(editorVal);
+  }
 
   function submitForm() {
-
     async function run() {
       const res = await fetch(
         "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*",
@@ -41,19 +57,17 @@ export default function Home() {
           method: "POST",
           headers: {
             "content-type": "application/json",
-            "x-rapidapi-key":
-              "aaaaaaaaaaa",
+            "x-rapidapi-key": "aaaaaaaaaaa",
             "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
           },
           body: {
-            stdin: "",
-            language_id: "",
-            source_code: "",
+            stdin: "input",
+            language_id: "52",
+            source_code: "editorVal",
           },
         }
       );
 
-  
       const token = res.token;
       if (token) {
         const json = jwt.decode(token);
@@ -65,29 +79,34 @@ export default function Home() {
       }
     }
     setOut(`code :- ${editorVal} input:= ${input}`);
-    
   }
-
-
-
 
   return (
     <div className="container-fluid">
       <div className="row">
-        <Navbar />
+        <Navbar 
+        lan={lan}
+        
+        />
       </div>
 
       <div className="container">
         <div className="row">
-          <Editor val={editorInput} actualVal={editorVal} />
+          <Editor val={editorInput} actualVal={editorVal} 
+          lan={lang}
+          
+          />
         </div>
+
         {/* <div className="container-fluid"> */}
 
         <button className={styles.run} onClick={submitForm}>
           Run
         </button>
-        
-        <button className={styles.reset}>Reset</button>
+
+        <button className={styles.reset} onClick={resetCode}>
+          Reset
+        </button>
 
         <div className={styles.io_container}>
           <div className={styles.input_container}>

@@ -22,20 +22,18 @@
 
 
 .login{
-    /* background-color: turquoise; */
-    /*  */
+    width: 20vw;
+	height: 40vh;
 	/* background-color: red; */
 	
-	/* position: absolute;
+	position: absolute;
 	top:0;
 	bottom: 0;
 	left: 0;
 	right: 0;
   	
 	margin: auto;
-    border-radius: 3%; */
-	width: 20vw;
-	height: 40vh;
+    border-radius: 3%;
 	
 
 }

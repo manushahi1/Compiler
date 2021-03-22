@@ -5,7 +5,11 @@ import Link from "next/Link";
 import Dropdown from "../Dropdown";
 import styles from "./Navbar.module.css";
 
-function Navbar() {
+function Navbar(props) {
+  const selectedlang = (lang) => {
+    console.log('recived from child', lang)
+    props.lan(lang);
+  }
   return (
     <nav>
       <div className="nav-wrapper ">
@@ -31,7 +35,9 @@ function Navbar() {
           </li>
 
           <li className={styles.dropd}>
-            <Dropdown />
+            <Dropdown 
+             selectedlang = {selectedlang}
+            />
           </li>
         </ul>
       </div>
