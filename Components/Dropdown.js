@@ -25,11 +25,12 @@ export default function Dropdown(props) {
           className="  form-control"
           onClick={changlang}
           style={{ backgroundColor: "#ee6e73" }}
+          // value="python"
         >
           <option style={{ backgroundColor: "white" }} value={'c_cpp'} >CPP</option>
           <option style={{ backgroundColor: "white" }} value={'java'}>Java</option>
-          <option style={{ backgroundColor: "white" }} value={'js'}>JavaScript</option>
-          <option style={{ backgroundColor: "white" }} value={'py'}>Python</option>
+          <option style={{ backgroundColor: "white" }} value={'javascript'}>JavaScript</option>
+          <option style={{ backgroundColor: "white" }} value={'python'}>Python</option>
         </select>
       </div>
     </div>

@@ -18,23 +18,44 @@ const Navbar = dynamic(() => import("../Components/Navbar/Navbar"), {
 export default function Home() {
   const [input, setInput] = useState("");
   const [out, setOut] = useState("");
-  const [lang, setLang] = useState('CPP');
-  
-
+  const [lang, setLang] = useState('c_cpp');
   const [editorVal, setEditor] = useState("");
-  
+  const [codes,setCodes] = useState({
+    c_cpp:"",
+    javascript:"",
+    python:"",
+    java:""
+  })
+
+  useEffect(()=>{
+    updateCode()
+  },[editorVal])
+
+  useEffect(()=>{
+    if(codes[lang] === ""){
+      setEditor("")
+    }
+  },[lang])
+  const updateCode = ()=>{
+    if(lang === 'python'){
+      setCodes({...codes,python:editorVal})
+    } else if(lang === 'c_cpp'){
+      setCodes({...codes,c_cpp:editorVal})
+    } else if(lang === 'java'){
+      setCodes({...codes,java:editorVal})
+    } else if(lang === 'javascript'){
+      setCodes({...codes,javascript:editorVal})
+    }
+  }
 
   function onChange(e) {
     setInput(e.target.value);
     console.log(e.target.value);
-   
   }
 
   const editorInput = async (val) => {
+    console.log(codes[val])
     setEditor(val);
-    
-    
-    console.log(val);
   };
    const lan=(la)=>{
      console.log("recived from middle",la)
@@ -50,6 +71,8 @@ export default function Home() {
   }
 
   function submitForm() {
+
+    console.log(codes[lang])
     async function run() {
       const res = await fetch(
         "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*",
@@ -63,7 +86,7 @@ export default function Home() {
           body: {
             stdin: "input",
             language_id: "52",
-            source_code: "editorVal",
+            source_code: code[lang],
           },
         }
       );
@@ -78,7 +101,7 @@ export default function Home() {
         setOut("err");
       }
     }
-    setOut(`code :- ${editorVal} input:= ${input}`);
+    setOut(`code :- ${codes[lang]} input:= ${input}`);
   }
 
   return (
@@ -92,11 +115,12 @@ export default function Home() {
 
       <div className="container">
         <div className="row">
-          <Editor val={editorInput} actualVal={editorVal} 
+          <Editor val={editorInput} actualVal={codes[lang]} 
           lan={lang}
           
           />
         </div>
+        
 
         {/* <div className="container-fluid"> */}
 
