@@ -61,4 +61,17 @@
 .run{
     margin-left: 2vw;
     margin-right: 2vw;
+
+}
+.runn{
+    margin-top: -10vh;
+    /* margin-left: 2vw; */
+    margin-right: 2vw;
+   
+    flex:0.5;
+}
+
+.edi{
+
+    background-color: red;
 }

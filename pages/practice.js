@@ -22,6 +22,34 @@ export default function Home() {
   
 
   const [editorVal, setEditor] = useState("");
+  const [codes,setCodes] = useState({
+    c_cpp:"",
+    javascript:"",
+    python:"",
+    java:""
+  })
+
+  useEffect(()=>{
+    updateCode()
+  },[editorVal])
+
+  useEffect(()=>{
+    if(codes[lang] === ""){
+      setEditor("")
+    }
+  },[lang])
+  const updateCode = ()=>{
+    if(lang === 'python'){
+      setCodes({...codes,python:editorVal})
+    } else if(lang === 'c_cpp'){
+      setCodes({...codes,c_cpp:editorVal})
+    } else if(lang === 'java'){
+      setCodes({...codes,java:editorVal})
+    } else if(lang === 'javascript'){
+      setCodes({...codes,javascript:editorVal})
+    }
+  }
+
   
 
   function onChange(e) {
@@ -31,10 +59,11 @@ export default function Home() {
   }
 
   const editorInput = async (val) => {
+    console.log(codes[val]);
     setEditor(val);
     
     
-    console.log(val);
+   
   };
    const lan=(la)=>{
      console.log("recived from middle",la)
@@ -50,6 +79,7 @@ export default function Home() {
   }
 
   function submitForm() {
+    console.log(codes[lang])
     async function run() {
       const res = await fetch(
         "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*",
@@ -78,7 +108,7 @@ export default function Home() {
         setOut("err");
       }
     }
-    setOut(`code :- ${editorVal} input:= ${input}`);
+    setOut(`code :- ${codes[lang]} input:= ${input}`);
   }
 
   return (
@@ -90,26 +120,45 @@ export default function Home() {
         />
       </div>
 
-      <div className="container">
-        <div className="row">
-          <Editor val={editorInput} actualVal={editorVal} 
+      <div className="container-fluid" style={{display:"flex",flexDirection:"row" ,flex:"1"}}>
+        
+
+        <div className="row" style={{flex:"0.5", overflowY:"scroll", height:"100vh"}}>
+       
+        </div>
+        <div className="row" style={{flex:"0.5" , border:"solid 2px"}}>
+          
+        
+          <Editor  val={editorInput} actualVal={codes[lang]} 
           lan={lang}
+          
           
           />
         </div>
         
+        
 
-        {/* <div className="container-fluid"> */}
+        
+        </div>
+        
 
-        <button className={styles.run} onClick={submitForm}>
+        
+
+        <div className="container-fluid" style={{paddingLeft:"50vw" , flex:"1"}}>
+          {/* <div style={{display:"flex",flexDirection:"row" ,flex:"0.5"}}>Write your notes here
+            <text></text>
+          </div> */}
+          
+
+        <button className={styles.runn} onClick={submitForm} >
           Run
         </button>
 
-        <button className={styles.reset} onClick={resetCode}>
+        <button className={styles.reset} onClick={resetCode} >
           Reset
         </button>
 
-        <div className={styles.io_container}>
+        <div className={styles.io_container} style={{display:"flex", flexDirection:"column" ,width:"45vw"}}>
           <div className={styles.input_container}>
             input
             <textarea
@@ -118,10 +167,10 @@ export default function Home() {
               value={input}
               onChange={onChange}
               rows="5"
-              cols="70"
+              cols="7"
             ></textarea>
           </div>
-          <div className={styles.output_container}>
+          <div className={styles.output_container} style={{display:"flex", flexDirection:"column", width:"45vw"}}>
             output
             <textarea
               type="text"
@@ -129,7 +178,7 @@ export default function Home() {
               value={out}
               readOnly
               rows="5"
-              cols="70"
+              cols="7"
             ></textarea>
           </div>
         </div>
@@ -139,3 +188,4 @@ export default function Home() {
     // </div>
   );
 }
+

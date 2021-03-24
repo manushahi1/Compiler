@@ -6,7 +6,7 @@ import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/mode-python";
 import Style from "./editor.module.css";
-import Dropdown from "../Dropdown";
+
 import jwt from "jsonwebtoken";
 
 function editor(props) {
@@ -66,7 +66,8 @@ function editor(props) {
     <AceEditor
         // mode="c_cpp"
         mode={props.lan}
-        
+        height="100vh"
+        width="50vw"
         theme="github"
         onChange={onChange}
         value={props.actualVal}
