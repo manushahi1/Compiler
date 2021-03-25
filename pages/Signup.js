@@ -4,11 +4,12 @@ import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("../Components/Navbar/Navbar"), {
   ssr: false,
 });
+import { Head } from "next/head";
 
 function signup() {
   return (
     <>
-      <Navbar />
+      
       <div className={styles.complete}>
         <form>
           <h3 className={styles.headi}>Sign Up</h3>

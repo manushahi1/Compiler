@@ -132,8 +132,8 @@ export default function Home() {
           Reset
         </button>
 
-        <div className={styles.io_container}>
-          <div className={styles.input_container}>
+        <div className={styles.io_container} style={{display:"flex", flex:"1", flexDirection:"column"}}>
+          <div className={styles.input_container} style={{marginLeft:"0"}} >
             input
             <textarea
               type="text"

@@ -40,6 +40,7 @@
     /* border: solid 2px; */
     display: flex;
     height: 20vh;
+    /* margin-left: 5vw; */
     /* background-color: red; */
     
 
@@ -48,8 +49,10 @@
 
 .input_container{
     flex: 1;
+    margin-left: 5vw;
     /* border:solid 2px; */
-    /* overflow: scroll; */
+    /* overflow: scroll; *
+    
 }
 
 .output_container{
@@ -65,13 +68,20 @@
 }
 .runn{
     margin-top: -10vh;
-    /* margin-left: 2vw; */
-    margin-right: 2vw;
+    /* margin-left: -2vw; */
+    margin-right: 3vw;
    
     flex:0.5;
+    align-items: center;
+    margin-left: 80vw;
+   
 }
 
 .edi{
 
     background-color: red;
 }
+
+
+
+
